@@ -1,0 +1,22 @@
+from wxpy import *
+#coding=utf-8
+txt=''
+reply=''
+#yaoppeiyang='ebe5c0e6'
+#xiaobing='c9705946'
+
+bot = Bot(console_qr=0, cache_path=True)
+bot.enable_puid('wxpy_puid.pkl')
+yaopeiyang = bot.friends().search('')[0]
+xiaobing = bot.mps().search('小冰')[0]
+@bot.register()
+def print_msg(msg):
+    if msg.sender==xiaobing:
+        print(msg)
+        reply=msg.text
+        msg.forward(yaopeiyang)
+    if msg.sender==yaopeiyang:
+        print(msg)
+        txt=msg.text
+        msg.forward(xiaobing)
+embed()
